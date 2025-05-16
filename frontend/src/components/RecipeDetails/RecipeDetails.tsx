@@ -1,8 +1,8 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { Recipe } from '../../types/recipe';
 import { getIngredients } from '../../utils/utils';
-import { FILTER_TYPES, FilterType } from '../../constants/filters';
+import { FILTER_TYPES } from '../../constants/filters';
 
 import styles from './RecipeDetails.module.css';
 
@@ -11,13 +11,8 @@ type Props = {
 };
 
 const RecipeDetails: React.FC<Props> = ({ recipe }) => {
-  const navigate = useNavigate();
   const { strMeal, strArea, strInstructions, strMealThumb } = recipe ?? {};
   const ingredients = getIngredients(recipe);
-
-  const handleFilter = (type: FilterType, value: string) => {
-    navigate(`/?${type}=${value}`);
-  };
 
   return (
     <div className={styles.wrapper}>
@@ -25,12 +20,12 @@ const RecipeDetails: React.FC<Props> = ({ recipe }) => {
         <img src={strMealThumb} alt={strMeal} />
         <div className={styles.headerContent}>
           <h1 className={styles.title}>{strMeal}</h1>
-          <p
+          <Link
+            to={`/?${FILTER_TYPES.COUNTRY}=${encodeURIComponent(strArea)}`}
             className={`${styles.link} ${styles.linkHover}`}
-            onClick={() => handleFilter(FILTER_TYPES.COUNTRY, strArea)}
           >
             {strArea}
-          </p>
+          </Link>
         </div>
       </div>
 
@@ -42,13 +37,14 @@ const RecipeDetails: React.FC<Props> = ({ recipe }) => {
       <div className={styles.ingredients}>
         <h2 className={styles.ingredientsTitle}>Ingredients</h2>
         <ul className={styles.ingredientsList}>
-          {ingredients.map((ingredient, i) => (
-            <li
-              key={i}
-              className={`${styles.ingredientItem} ${styles.ingredientItemHover}`}
-              onClick={() => handleFilter(FILTER_TYPES.INGREDIENT, ingredient!)}
-            >
-              {ingredient}
+          {ingredients.map(({ ingredient, measure }, i) => (
+            <li key={i} className={styles.ingredientItem}>
+              <Link
+                to={`/?${FILTER_TYPES.INGREDIENT}=${encodeURIComponent(ingredient)}`}
+                className={styles.ingredientItemHover}
+              >
+                {`${ingredient} - ${measure}`}
+              </Link>
             </li>
           ))}
         </ul>
