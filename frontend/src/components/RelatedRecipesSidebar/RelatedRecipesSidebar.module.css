@@ -1,0 +1,23 @@
+.sidebar {
+  width: 400px;
+  padding: 18px;
+  border-left: 1px solid #ddd;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  cursor: pointer;
+  margin-bottom: 10px;
+  color: #007bff;
+  transition: color 0.2s ease;
+}
+
+.item:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
