@@ -21,11 +21,7 @@ const RelatedRecipesSidebar: React.FC<Props> = ({ category, recipes }) => {
       <h3>More {category} Recipes</h3>
       <ul className={styles.list}>
         {recipes.map(({ idMeal, strMeal }) => (
-          <li
-            key={idMeal}
-            className={styles.item}
-            onClick={() => handleCategoryClick(category)}
-          >
+          <li key={idMeal} className={styles.item} onClick={() => handleCategoryClick(category)}>
             {strMeal}
           </li>
         ))}
