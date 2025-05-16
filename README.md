@@ -1,6 +1,6 @@
 # 🍽️ Recipe Book
 
-A full-stack recipe application built with  **TypeScript**, and **Node.js**.
+A full-stack recipe application built with  **TypeScript**, **React** and **Node.js**.
 
 ## 🧩 Project Structure
 
