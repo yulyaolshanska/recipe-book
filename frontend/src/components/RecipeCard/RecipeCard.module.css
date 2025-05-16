@@ -1,4 +1,6 @@
 .card {
+  max-width: 240px;
+  width: 100%;
   cursor: pointer;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -33,10 +35,4 @@
   color: #333;
   margin: 0;
   word-break: break-word;
-}
-
-@media (min-width: 600px) {
-  .card {
-    max-width: 250px;
-  }
 }
